@@ -59,7 +59,7 @@ let x = 10; // TypeScript infers 'x' as number
 
 let y: string | boolean | number; // Explicitly typed as string
 
-function greet(a: number, b: string): void| string {
+function greet(a: number, b: string): void | string {
     return `Hello ${b}, your number is ${a}`;
 }
 greet(5, "John"); // Returns a string
@@ -73,11 +73,11 @@ interface User {
     gender?: string; // Optional property
 }
 
-function getDataOfUser(obj:User){
-obj.email
+function getDataOfUser(obj: User) {
+    obj.email
 }
 
-getDataOfUser({id: 1, name: "John Doe", email: "aananan", }); // 'age' is not defined in the User interface, so it will cause an errorz
+getDataOfUser({ id: 1, name: "John Doe", email: "aananan", }); // 'age' is not defined in the User interface, so it will cause an errorz
 
 
 // extending interfaces
@@ -91,16 +91,16 @@ interface Admin extends User2 {
 }
 
 function getAdminData(obj: Admin) {
-obj.admin
+    obj.admin
 }
 
 // Merging interfaces
 // TypeScript allows interfaces with the same name to be merged
-interface abcd{
+interface abcd {
     id: number;
 }
 
-interface abcd{
+interface abcd {
     name: string; // This will merge with the previous 'abcd' interface
 }
 
@@ -132,12 +132,12 @@ type UnionType = string | number | boolean; // 'UnionType' can be a string, numb
 
 // intersection types -> combines multiple types into one
 
-type IntersectionType = { 
-    id: number; 
+type IntersectionType = {
+    id: number;
     name: string
- }; // 'IntersectionType' has both 'id' and 'name' properties
+}; // 'IntersectionType' has both 'id' and 'name' properties
 
-type ExtendedType = IntersectionType & { 
+type ExtendedType = IntersectionType & {
     email: string
 }; // 'ExtendedType' has 'id', 'name', and 'email' properties
 
@@ -145,3 +145,71 @@ function processIntersection(obj: ExtendedType) {
     obj.id
 }
 
+// class 
+
+class Device {
+    name = "LG";
+    price = 12000;
+    category = "Digital";
+}
+
+let d1 = new Device();
+let d2 = new Device();
+console.log(d1.name, d1.price, d1.category); // Accessing properties of the class instance
+console.log(d2.name, d2.price, d2.category); // Accessing properties of
+
+
+// constructor
+// constructor me real data nhi hota only real data ka sape hota hai(yani ki koi bhi chiz banane/Maker wala like- bottelmaker, HumanMaker).
+// Parle G Factory-> Machine-> machine se real data banta hai.(biskit)
+// must be used public 
+// method one create a constructor with public properties
+class bottleMaker {
+    constructor(public name: string, public price: number, quentity: number = 0, public thumbnail: string = "default-thumbnail.jpg") {
+
+        if (!thumbnail) {
+            this.thumbnail = "default-thumbnail.jpg"; // Default thumbnail if not provided
+        }
+    }
+}
+let b1 = new bottleMaker("Milton", 1200, 12, "");
+let b2 = new bottleMaker("cello", 900, 12, "");
+b1.name = "Updated Milton"; // Updating the name property of b1 instance
+// method two create a constructor with public properties
+class MusicPlayer {
+    public name;
+    public price;
+    public volume;
+    constructor(name: string, price: number, volume: number = 50,) {
+        this.name = name;
+        this.price = price;
+        this.volume = volume;
+    }
+}
+let m1 = new MusicPlayer("Sony", 15000, 30);
+let m2 = new MusicPlayer("JBL", 10000, 40);
+
+
+// this keyword 
+
+class Abcd {
+    name = "Anand";
+    changeName(newName: string) {
+        this.name = newName; // Using 'this' to refer to the current instance's property
+        this.changeSomeMoreStuff();
+    }
+    changeSomeMoreStuff() {
+    }
+}
+
+let obj= new Abcd(); // Call the method to change the name property;
+obj.changeName("Updated Anand"); // Changing the name property using the method
+
+
+// Access Modifiers public, private, protected
+
+class UserAccount{
+    constructor(private BankName:string){
+
+    }
+}
