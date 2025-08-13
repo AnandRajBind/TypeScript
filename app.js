@@ -125,9 +125,48 @@ let obj = new Abcd(); // Call the method to change the name property;
 obj.changeName("Updated Anand"); // Changing the name property using the method
 // Access Modifiers public, private, protected
 class UserAccount {
-    BankName;
-    constructor(BankName) {
-        this.BankName = BankName;
+    name;
+    constructor(name) {
+        this.name = name;
+        this.name = name; // 'name' is private and can only be accessed within the class
+    }
+    changing() {
+        this.name = "Updated Name"; // Accessing private property within the class
     }
 }
+let bo1 = new UserAccount("Anand"); // Creating an instance of UserAccount
+bo1.changing(); // Calling the method to change the name property
+// inheritance
+// readonly are used to make a property immutable after initialization
+class BottleMaker {
+    name;
+    constructor(name) {
+        this.name = name;
+    }
+}
+class MetalBottleMaker extends BottleMaker {
+    name;
+    constructor(name) {
+        super(name); // Calling the parent class constructor
+        this.name = name;
+    }
+    getValue() {
+        console.log(this.name); // Accessing the name property of the instance
+    }
+}
+let boottle1 = new MetalBottleMaker("chilton");
+console.log(boottle1.name); // Accessing the name property of the instance
+boottle1.getValue(); // Calling the method to get the value of the bottle
+// protected ******************************************
+class BottleMaker2 {
+    name = "milton"; // 'name' is protected and can be accessed in subclasses and can not be accessed outside the class hierarchy
+}
+class MetalBottleMaker2 extends BottleMaker2 {
+    material = "metal"; // 'material' is a public property of the subclass
+    changeName() {
+        this.name = "some Other Name";
+    }
+}
+let b4 = new MetalBottleMaker2();
+b4.changeName(); // Calling the method to change the name property
 //# sourceMappingURL=app.js.map
