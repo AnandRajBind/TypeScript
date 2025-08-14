@@ -68,7 +68,7 @@ greet(5, "John"); // Returns a string
 // interface -> used to define the structure of an object
 interface User {
     id: number;
-    name: string;
+    _name: string;
     email?: string; // Optional property
     gender?: string; // Optional property
 }
@@ -77,7 +77,7 @@ function getDataOfUser(obj: User) {
     obj.email
 }
 
-getDataOfUser({ id: 1, name: "John Doe", email: "aananan", }); // 'age' is not defined in the User interface, so it will cause an errorz
+// getDataOfUser({ id: 1, name: "John Doe", email: "aananan", }); // 'age' is not defined in the User interface, so it will cause an errorz
 
 
 // extending interfaces
@@ -258,4 +258,70 @@ class MetalBottleMaker2 extends BottleMaker2 {
 let b4 = new MetalBottleMaker2();
 b4.changeName(); // Calling the method to change the name property
 
+
+// getters and setters
+class User {
+    constructor(public _name: string, public _age: number) {
+    }
+
+    // getName(){
+    //     return this.name; // Getter method to access the name property
+    // }
+    // setName(newName: string) {
+    //     this.name = newName; // Setter method to update the name property
+    // }
+
+    // using get and set keywords
+    get name() {
+        return this._name; // Getter method to access the name property
+    }
+    set name(newName: string) {
+        this._name = newName; // Setter method to update the name property
+    }
+}
+let u1 = new User("Anand", 25);
+
+
+// static keyword are used to define properties or methods that belong to the class itself rather than to instances of the class
+// it is accesabe without creating the object of the class
+class Shrey {
+    static version = 1.0;
+
+    static getRandomNumber() {
+        return Math.random(); // Static method to generate a random number
+    }
+}
+
+
+
+// abstract classes
+
+class cookingEssentials {
+    constructor(public gas: number, public gasName: string) {
+
+    }
+}
+class sabji extends cookingEssentials {
+}
+
+// functions
+
+function abcde(name: string, age: number, cb: (args: string) => void) {
+    cb("hello");
+}
+
+abcde("harsh", 25, (args: string) => {// finction call
+    console.log("Callback function executed");
+});
+
+// optional and default parameters
+
+function abcdef(name: string, age: number, gender?: string,email: string="defaultEmail@gmail.com"){
+console.log(name,age,gender,email)
+}
+abcdef("Anand", 25,"Male"); // Calling the function with required parameters
+abcdef("lackbatack", 25); 
+
+
+// rest and spread operator
 

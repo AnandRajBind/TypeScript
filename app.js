@@ -52,7 +52,6 @@ greet(5, "John"); // Returns a string
 function getDataOfUser(obj) {
     obj.email;
 }
-getDataOfUser({ id: 1, name: "John Doe", email: "aananan", }); // 'age' is not defined in the User interface, so it will cause an errorz
 function getAdminData(obj) {
     obj.admin;
 }
@@ -169,4 +168,60 @@ class MetalBottleMaker2 extends BottleMaker2 {
 }
 let b4 = new MetalBottleMaker2();
 b4.changeName(); // Calling the method to change the name property
+// getters and setters
+class User {
+    _name;
+    _age;
+    constructor(_name, _age) {
+        this._name = _name;
+        this._age = _age;
+    }
+    // getName(){
+    //     return this.name; // Getter method to access the name property
+    // }
+    // setName(newName: string) {
+    //     this.name = newName; // Setter method to update the name property
+    // }
+    // using get and set keywords
+    get name() {
+        return this._name; // Getter method to access the name property
+    }
+    set name(newName) {
+        this._name = newName; // Setter method to update the name property
+    }
+}
+let u1 = new User("Anand", 25);
+// static keyword are used to define properties or methods that belong to the class itself rather than to instances of the class
+// it is accesabe without creating the object of the class
+class Shrey {
+    static version = 1.0;
+    static getRandomNumber() {
+        return Math.random(); // Static method to generate a random number
+    }
+}
+// abstract classes
+class cookingEssentials {
+    gas;
+    gasName;
+    constructor(gas, gasName) {
+        this.gas = gas;
+        this.gasName = gasName;
+    }
+}
+class sabji extends cookingEssentials {
+}
+// functions
+function abcde(name, age, cb) {
+    cb("hello");
+}
+abcde("harsh", 25, (args) => {
+    console.log("Callback function executed");
+});
+// optional and default parameters
+function abcdef(name, age, gender, email = "defaultEmail@gmail.com") {
+    console.log(name, age, gender, email);
+}
+abcdef("Anand", 25, "Male"); // Calling the function with required parameters
+abcdef("lackbatack", 25);
+// rest and spread operator
 //# sourceMappingURL=app.js.map
