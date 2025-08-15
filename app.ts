@@ -316,33 +316,33 @@ abcde("harsh", 25, (args: string) => {// finction call
 
 // optional and default parameters
 
-function abcdef(name: string, age: number, gender?: string,email: string="defaultEmail@gmail.com"){
-console.log(name,age,gender,email)
+function abcdef(name: string, age: number, gender?: string, email: string = "defaultEmail@gmail.com") {
+    console.log(name, age, gender, email)
 }
-abcdef("Anand", 25,"Male"); // Calling the function with required parameters
-abcdef("lackbatack", 25); 
+abcdef("Anand", 25, "Male"); // Calling the function with required parameters
+abcdef("lackbatack", 25);
 
 
 // rest and spread operator
 
-function sum(...arr: number[]){// rest 
-console.log(arr); // Using rest parameter to accept multiple arguments as an array
-console.log(arr[0]); // Accessing individual elements of the rest parameter array
+function sum(...arr: number[]) {// rest 
+    console.log(arr); // Using rest parameter to accept multiple arguments as an array
+    console.log(arr[0]); // Accessing individual elements of the rest parameter array
 }
-sum(1, 2, 3, 4, 5,6,7,8,9); // Calling the function with rest parameters
+sum(1, 2, 3, 4, 5, 6, 7, 8, 9); // Calling the function with rest parameters
 
 
 //spread operator
-var array= [1, 2, 3, 4, 5]; // Example array to demonstrate spread operator
+var array = [1, 2, 3, 4, 5]; // Example array to demonstrate spread operator
 var newArray = [...array, 6, 7, 8]; // Using spread operator to create a new array with additional elements
 
 // function overloading
 
-function abcdefgh(a:String):void;// function signature
-function abcdefgh(a:String, b:number):number;
+function abcdefgh(a: String): void;// function signature
+function abcdefgh(a: String, b: number): number;
 
-function abcdefgh(a: any, b?:any){
-    if(typeof a=== "string" && b === undefined) {
+function abcdefgh(a: any, b?: any) {
+    if (typeof a === "string" && b === undefined) {
         console.log("Function called with one string argument:", a);
     } if (typeof a === "string" && typeof b === "number") {
         console.log("Function called with string and number arguments:", a, b);
@@ -355,5 +355,62 @@ abcdefgh("lackbatack"); // Calling the function with one string argument
 abcdefgh("lackbatack", 25); // Calling the function with string and number arguments
 
 // generics 
+// Generics allow you to create reusable components that can work with any data type
+// They provide a way to define functions, classes, and interfaces that can operate on different types
+function genericFunction<T>(arg: T) {
 
-  
+}
+genericFunction<string>("Hello, Generics!"); // Calling the generic function with a string argument
+genericFunction<number>(42); // Calling the generic function with a number argument
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function genericFunction2<H>(a: H, b: string, c: number): H {
+    console.log(a, b, c); // Using the generic type 'H' to accept any type of argument
+    return a; // Returning the argument of type 'H'
+}
+
+genericFunction2("Halua", "pudi", 42);
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function log<T>(value: T) {
+    console.log(value); // Logging the value of type 'T'
+}
+log(12);
+log<string>("Hello, Generics!");// function call karte time genenric type ko " log<string>("Hello, Generics!")" specify karna optional hai
+log(true); // Calling the log function with a boolean argument
+
+// generic interface
+interface GenericInterface<T> {
+
+    name: string;
+    age: number;
+    key: T; // Using generic type 'T' to define the 'data' property
+}
+
+function GenericInterfaceFunction(obj: GenericInterface<string>) { 
+
+}
+
+GenericInterfaceFunction({
+    name: "Anand", age: 25, key: "someKey"
+})
+
+// generic class
+
+class GenericClass<T> {
+    constructor(public key: T) { // Using generic type 'T' to define the 'data' property
+    }
+}
+
+let g1= new GenericClass<string>("Hello, Generics!"); // Creating an instance of GenericClass with a string type
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++
+
+function genericFunction3<T>(a: T, b: T): T {
+   // return "hey";  // it can be not possible becausr it is a string litral and T is a generic type
+    return <T>"hey";   // Using type assertion to return a string literal as type 'T'
+   // return "hey" as T;    
+
+}
+genericFunction3<string>("Hello", "World"); // Calling the generic function with string arguments
+
+
+// Modules
