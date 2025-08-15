@@ -325,3 +325,35 @@ abcdef("lackbatack", 25);
 
 // rest and spread operator
 
+function sum(...arr: number[]){// rest 
+console.log(arr); // Using rest parameter to accept multiple arguments as an array
+console.log(arr[0]); // Accessing individual elements of the rest parameter array
+}
+sum(1, 2, 3, 4, 5,6,7,8,9); // Calling the function with rest parameters
+
+
+//spread operator
+var array= [1, 2, 3, 4, 5]; // Example array to demonstrate spread operator
+var newArray = [...array, 6, 7, 8]; // Using spread operator to create a new array with additional elements
+
+// function overloading
+
+function abcdefgh(a:String):void;// function signature
+function abcdefgh(a:String, b:number):number;
+
+function abcdefgh(a: any, b?:any){
+    if(typeof a=== "string" && b === undefined) {
+        console.log("Function called with one string argument:", a);
+    } if (typeof a === "string" && typeof b === "number") {
+        console.log("Function called with string and number arguments:", a, b);
+        return a.length + b; // Example implementation
+    }
+    // else throw new Error("Something in wrong");
+}
+
+abcdefgh("lackbatack"); // Calling the function with one string argument
+abcdefgh("lackbatack", 25); // Calling the function with string and number arguments
+
+// generics 
+
+  
