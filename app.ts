@@ -414,3 +414,68 @@ genericFunction3<string>("Hello", "World"); // Calling the generic function with
 
 
 // Modules
+
+import { addPayment, getDetails } from './paymet'; // Importing functions from the 'paymet' module
+
+
+addPayment(120); // Calling the addPayment function from the 'paymet' module
+// default export ko import karte time {} ka use nahi hota  
+import PaymentAddress from './paymet'; // Importing the default class from the 'paymet' module
+let payment=new PaymentAddress(700);
+console.log(payment)
+
+ //Type  Assertions and Type castings
+
+ let s: any = 12; // 'a' is of type 'any'
+//  (<number>s) // Type assertion to treat 's' as a number
+ (s as string)
+
+//  type casting
+
+let d =Number("700");
+console.log(typeof d); // Type casting to convert string to number
+
+
+// non-null assertion operator
+let g: null |undefined |string;
+g= "Hello, World!"; // 'g' can be null, undefined, or a string
+g!; // Non-null assertion operator to assert that 'g' is never null or undefined
+
+// type Guards, type narrowing hai. jab hame pata nhi hai ki variable ka type kya hai to usko check karne ke liye ham typeOf and if elase ka use karrte hai to use ham type narrowing kahate hai.
+
+function random(arg: string | number ){
+    if(typeof arg === "string"){
+        return "string"; // If 'arg' is a string, convert it to uppercase
+    }
+    else if(typeof arg === "number"){
+        return "number"// If 'arg' is a string, convert it to uppercase
+    }
+}
+console.log(random("Hello")); // Calling the function with a string argument
+console.log(random(42)); // Calling the function with a number argument
+
+
+class TVkaRemote{
+    swichOffTV(){
+        console.log("Remote is switched off");
+    }
+}
+
+class CarkaRemote{
+    swichOffCar(){
+        console.log("Car ka Remote is switched off");
+    }
+}
+
+const tv=new TVkaRemote();
+const car=new CarkaRemote();
+function switchOffDevice(device: TVkaRemote | CarkaRemote) {
+    if (device instanceof TVkaRemote) {
+        device.swichOffTV(); // If 'device' is an instance of TVkaRemote, call its method
+    } else if (device instanceof CarkaRemote) {
+        device.swichOffCar(); // If 'device' is an instance of CarkaRemote, call its method
+    }
+}
+
+switchOffDevice(tv); // Calling the function with a TVkaRemote instance
+switchOffDevice(car); // Calling the function with a CarkaRemote instance

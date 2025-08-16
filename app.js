@@ -1,4 +1,7 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 console.log("Hello, World!");
 console.log("This is a simple TypeScript application.");
@@ -245,4 +248,94 @@ function abcdefgh(a, b) {
 abcdefgh("lackbatack"); // Calling the function with one string argument
 abcdefgh("lackbatack", 25); // Calling the function with string and number arguments
 // generics 
+// Generics allow you to create reusable components that can work with any data type
+// They provide a way to define functions, classes, and interfaces that can operate on different types
+function genericFunction(arg) {
+}
+genericFunction("Hello, Generics!"); // Calling the generic function with a string argument
+genericFunction(42); // Calling the generic function with a number argument
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function genericFunction2(a, b, c) {
+    console.log(a, b, c); // Using the generic type 'H' to accept any type of argument
+    return a; // Returning the argument of type 'H'
+}
+genericFunction2("Halua", "pudi", 42);
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function log(value) {
+    console.log(value); // Logging the value of type 'T'
+}
+log(12);
+log("Hello, Generics!"); // function call karte time genenric type ko " log<string>("Hello, Generics!")" specify karna optional hai
+log(true); // Calling the log function with a boolean argument
+function GenericInterfaceFunction(obj) {
+}
+GenericInterfaceFunction({
+    name: "Anand", age: 25, key: "someKey"
+});
+// generic class
+class GenericClass {
+    key;
+    constructor(key) {
+        this.key = key;
+    }
+}
+let g1 = new GenericClass("Hello, Generics!"); // Creating an instance of GenericClass with a string type
+//+++++++++++++++++++++++++++++++++++++++++++++++++
+function genericFunction3(a, b) {
+    // return "hey";  // it can be not possible becausr it is a string litral and T is a generic type
+    return "hey"; // Using type assertion to return a string literal as type 'T'
+    // return "hey" as T;    
+}
+genericFunction3("Hello", "World"); // Calling the generic function with string arguments
+// Modules
+const paymet_1 = require("./paymet"); // Importing functions from the 'paymet' module
+(0, paymet_1.addPayment)(120); // Calling the addPayment function from the 'paymet' module
+// default export ko import karte time {} ka use nahi hota  
+const paymet_2 = __importDefault(require("./paymet")); // Importing the default class from the 'paymet' module
+let payment = new paymet_2.default(700);
+console.log(payment);
+//Type  Assertions and Type castings
+let s = 12; // 'a' is of type 'any'
+//  (<number>s) // Type assertion to treat 's' as a number
+s;
+//  type casting
+let d = Number("700");
+console.log(typeof d); // Type casting to convert string to number
+// non-null assertion operator
+let g;
+g = "Hello, World!"; // 'g' can be null, undefined, or a string
+g; // Non-null assertion operator to assert that 'g' is never null or undefined
+// type Guards, type narrowing hai. jab hame pata nhi hai ki variable ka type kya hai to usko check karne ke liye ham typeOf and if elase ka use karrte hai to use ham type narrowing kahate hai.
+function random(arg) {
+    if (typeof arg === "string") {
+        return "string"; // If 'arg' is a string, convert it to uppercase
+    }
+    else if (typeof arg === "number") {
+        return "number"; // If 'arg' is a string, convert it to uppercase
+    }
+}
+console.log(random("Hello")); // Calling the function with a string argument
+console.log(random(42)); // Calling the function with a number argument
+class TVkaRemote {
+    swichOffTV() {
+        console.log("Remote is switched off");
+    }
+}
+class CarkaRemote {
+    swichOffCar() {
+        console.log("Car ka Remote is switched off");
+    }
+}
+const tv = new TVkaRemote();
+const car = new CarkaRemote();
+function switchOffDevice(device) {
+    if (device instanceof TVkaRemote) {
+        device.swichOffTV(); // If 'device' is an instance of TVkaRemote, call its method
+    }
+    else if (device instanceof CarkaRemote) {
+        device.swichOffCar(); // If 'device' is an instance of CarkaRemote, call its method
+    }
+}
+switchOffDevice(tv); // Calling the function with a TVkaRemote instance
+switchOffDevice(car); // Calling the function with a CarkaRemote instance
 //# sourceMappingURL=app.js.map
